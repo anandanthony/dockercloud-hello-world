@@ -1,6 +1,10 @@
 FROM alpine:3.4
 
+COPY sshd_config /etc/ssh/
+
 RUN apk --update add nginx php5-fpm && \
+    apk add --update openssh-server \
+    echo "$SSH_PASSWD" | chpasswd &&\
     mkdir -p /run/nginx
 
 ADD www /www
@@ -10,5 +14,5 @@ ADD run.sh /run.sh
 
 ENV LISTEN_PORT=80
 
-EXPOSE 80
+EXPOSE 80 2222
 CMD /run.sh
