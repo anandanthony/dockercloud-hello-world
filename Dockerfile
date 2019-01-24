@@ -6,8 +6,8 @@ ENV SSH_PASSWD "root:Docker!"
 COPY sshd_config /etc/ssh/
 
 RUN apk --update add nginx php5-fpm && \
-    apk add --update openssh-server &&\
-    echo "$SSH_PASSWD" | chpasswd &&\
+    apk add --update openssh-server && \
+    echo "$SSH_PASSWD" | chpasswd && \
     mkdir -p /run/nginx
 
 ADD www /www
