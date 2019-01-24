@@ -1,5 +1,8 @@
 FROM alpine:3.4
 
+# ssh
+ENV SSH_PASSWD "root:Docker!"
+
 COPY sshd_config /etc/ssh/
 
 RUN apk --update add nginx php5-fpm && \
